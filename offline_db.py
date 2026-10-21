@@ -11,8 +11,8 @@ def _find_dir() -> Path:
     if env:
         return Path(env)
     here = Path(__file__).resolve().parent
-    cands = [here / "demo_data", Path.cwd() / "demo_data"]
-    for base in (here, Path.cwd()):  # سازگار با تفاوت حروف بزرگ/کوچک روی لینوکس (Demo_Data و ...)
+    cands = [here / "demo_data", Path.cwd() / "demo_data", here, Path.cwd()]
+    for base in (here, Path.cwd()):
         try:
             cands += [p for p in base.iterdir() if p.is_dir() and p.name.lower() == "demo_data"]
         except OSError:
