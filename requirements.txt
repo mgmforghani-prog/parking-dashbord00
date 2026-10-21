@@ -1,0 +1,8 @@
+streamlit>=1.40,<1.50
+pandas>=2.0
+plotly>=5.20
+# درایور SQL Server بدون ODBC. روی Streamlit Cloud در Advanced settings پایتون ۳.۱۲ یا ۳.۱۳ را انتخاب کنید (چرخ‌های pymssql برای ۳.۱۴ را تأیید نکرده‌ام)
+pymssql>=2.3.2
+pyarrow>=15
+jdatetime
+numpy

@@ -1,0 +1,784 @@
+﻿dbo,Activities,TABLE,Id,int,NOT NULL,1
+dbo,Activities,TABLE,ActivityTitle,nvarchar,NOT NULL,2
+dbo,ActivityLogs,TABLE,Id,bigint,NOT NULL,1
+dbo,ActivityLogs,TABLE,UserId,int,NOT NULL,2
+dbo,ActivityLogs,TABLE,CreateDateTime,datetime,NOT NULL,3
+dbo,ActivityLogs,TABLE,ActivityId,int,NOT NULL,4
+dbo,ActivityLogs,TABLE,EventId,bigint,NULL,5
+dbo,ActivityLogs,TABLE,Description,nvarchar,NULL,6
+dbo,Advertise,TABLE,ID,int,NOT NULL,1
+dbo,Advertise,TABLE,Title,nvarchar,NOT NULL,2
+dbo,Advertise,TABLE,ImageFile,varbinary,NOT NULL,3
+dbo,Advertise,TABLE,StartDate,datetime,NOT NULL,4
+dbo,Advertise,TABLE,EndDate,datetime,NOT NULL,5
+dbo,Advertise,TABLE,IsActive,bit,NOT NULL,6
+dbo,ANPRPlates,TABLE,Id,bigint,NOT NULL,1
+dbo,ANPRPlates,TABLE,PlateImage,varbinary,NULL,2
+dbo,ANPRPlates,TABLE,CarImage,varbinary,NULL,3
+dbo,ANPRPlates,TABLE,CreateDate,datetime,NOT NULL,4
+dbo,ANPRPlates,TABLE,Confidence,float,NOT NULL,5
+dbo,ANPRPlates,TABLE,P1,nvarchar,NULL,6
+dbo,ANPRPlates,TABLE,P2,nvarchar,NULL,7
+dbo,ANPRPlates,TABLE,P3,nvarchar,NULL,8
+dbo,ANPRPlates,TABLE,P4,nvarchar,NULL,9
+dbo,ANPRPlates,TABLE,GateId,int,NULL,10
+dbo,ApiDiscountCodes,TABLE,ID,bigint,NOT NULL,1
+dbo,ApiDiscountCodes,TABLE,ApiLogID,bigint,NOT NULL,2
+dbo,ApiDiscountCodes,TABLE,DiscountCode,nvarchar,NOT NULL,3
+dbo,ApiDiscountCodes,TABLE,Price,int,NOT NULL,4
+dbo,ApiDiscountCodes,TABLE,Time,int,NOT NULL,5
+dbo,ApiLogs,TABLE,ID,bigint,NOT NULL,1
+dbo,ApiLogs,TABLE,DeviceID,int,NOT NULL,2
+dbo,ApiLogs,TABLE,TagID,nvarchar,NULL,3
+dbo,ApiLogs,TABLE,TotalPrice,int,NOT NULL,4
+dbo,ApiLogs,TABLE,FinalPrice,int,NOT NULL,5
+dbo,ApiLogs,TABLE,Iscomplete,bit,NOT NULL,6
+dbo,ApiLogs,TABLE,PaymentStatus,varchar,NULL,7
+dbo,ApiLogs,TABLE,CreateDate,datetime,NULL,8
+dbo,ApiLogs,TABLE,CompleteDate,datetime,NULL,9
+dbo,ApiLogs,TABLE,AppUserID,int,NOT NULL,10
+dbo,ApiLogs,TABLE,PaymentTypeID,int,NOT NULL,11
+dbo,ApiLogs,TABLE,ReserveDate,datetime,NULL,12
+dbo,ApiLogs,TABLE,ReserveHours,int,NULL,13
+dbo,ApiLogs,TABLE,ReserveCode,varchar,NULL,14
+dbo,ApiLogs,TABLE,ReservePrice,int,NOT NULL,15
+dbo,ApiLogs,TABLE,IsUsed,bit,NULL,16
+dbo,AppPaymentTypes,TABLE,ID,int,NOT NULL,1
+dbo,AppPaymentTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,BarrierLogs,TABLE,Id,int,NOT NULL,1
+dbo,BarrierLogs,TABLE,GateId,int,NOT NULL,2
+dbo,BarrierLogs,TABLE,LogDateTime,datetime,NOT NULL,3
+dbo,BarrierLogs,TABLE,Message,varchar,NULL,4
+dbo,BlockPlates,TABLE,Id,int,NOT NULL,1
+dbo,BlockPlates,TABLE,CreateDate,datetime,NOT NULL,2
+dbo,BlockPlates,TABLE,CreateUserId,int,NOT NULL,3
+dbo,BlockPlates,TABLE,PlateId,int,NOT NULL,4
+dbo,BlockPlates,TABLE,BlockCode,nvarchar,NULL,5
+dbo,BlockPlates,TABLE,BlockDescription,nvarchar,NULL,6
+dbo,BlockPlates,TABLE,UnblockCode,nvarchar,NULL,7
+dbo,BlockPlates,TABLE,UnblockDescription,nvarchar,NULL,8
+dbo,BlockPlates,TABLE,UpdateDate,datetime,NOT NULL,9
+dbo,BlockPlates,TABLE,UpdateUserId,int,NOT NULL,10
+dbo,BlockPlates,TABLE,IsBlock,bit,NOT NULL,11
+dbo,Car_DayTypes,TABLE,ID,int,NOT NULL,1
+dbo,Car_DayTypes,TABLE,CalculationMethod,int,NOT NULL,2
+dbo,Car_DayTypes,TABLE,CarTypeID,int,NOT NULL,3
+dbo,Car_DayTypes,TABLE,DayTypeID,int,NOT NULL,4
+dbo,Car_DayTypes,TABLE,PricingProfileID,int,NOT NULL,5
+dbo,Car_DayTypes,TABLE,InputCost,int,NOT NULL,6
+dbo,Car_DayTypes,TABLE,InputTime,int,NOT NULL,7
+dbo,Car_DayTypes,TABLE,FirstPeriodTime,int,NULL,8
+dbo,Car_DayTypes,TABLE,FirstPeriodTimeCoefficient,float,NULL,9
+dbo,Car_DayTypes,TABLE,PeriodSize,int,NOT NULL,10
+dbo,Car_DayTypes,TABLE,PeriodPrice,int,NOT NULL,11
+dbo,Car_DayTypes,TABLE,PeriodTimeCoefficient,float,NOT NULL,12
+dbo,Car_DayTypes,TABLE,BoardingParkInputPriceEnable,bit,NOT NULL,13
+dbo,Car_DayTypes,TABLE,BoardingHours,int,NOT NULL,14
+dbo,Car_DayTypes,TABLE,NightBoardingParkPrice,int,NOT NULL,15
+dbo,Car_DayTypes,TABLE,Night2IncreasePrice,int,NOT NULL,16
+dbo,Car_DayTypes,TABLE,Night3IncreasePrice,int,NOT NULL,17
+dbo,Car_DayTypes,TABLE,Night4IncreasePrice,int,NOT NULL,18
+dbo,Car_DayTypes,TABLE,Night5IncreasePrice,int,NOT NULL,19
+dbo,CardID,TABLE,ID,int,NOT NULL,1
+dbo,CardID,TABLE,TagID,varchar,NOT NULL,2
+dbo,CardID,TABLE,CSN6,varchar,NOT NULL,3
+dbo,CardID,TABLE,CSN,varchar,NOT NULL,4
+dbo,CardID,TABLE,APDisable,bit,NOT NULL,5
+dbo,CardID,TABLE,PlateDisable,bit,NOT NULL,6
+dbo,CarTypes,TABLE,ID,int,NOT NULL,1
+dbo,CarTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,CarTypes,TABLE,Icon,varbinary,NULL,3
+dbo,CarTypes,TABLE,ShortKey,varchar,NOT NULL,4
+dbo,CarTypes,TABLE,Priority,int,NOT NULL,5
+dbo,CarTypes,TABLE,Visible,bit,NOT NULL,6
+dbo,CarTypes,TABLE,PlateEnable,bit,NOT NULL,7
+dbo,CarTypes,TABLE,HasPlate,bit,NOT NULL,8
+dbo,CheckRequests,TABLE,ID,int,NOT NULL,1
+dbo,CheckRequests,TABLE,CraeteDate,datetime,NOT NULL,2
+dbo,CheckRequests,TABLE,Image,varbinary,NULL,3
+dbo,CheckRequests,TABLE,TaradodID,bigint,NULL,4
+dbo,CheckRequests,TABLE,Manual,bit,NOT NULL,5
+dbo,CheckTypes,TABLE,Id,int,NOT NULL,1
+dbo,CheckTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,ClientMenus,TABLE,Id,int,NOT NULL,1
+dbo,ClientMenus,TABLE,Title,nvarchar,NOT NULL,2
+dbo,ClientMenus,TABLE,MenuCode,varchar,NOT NULL,3
+dbo,ClientMenus,TABLE,Active,bit,NOT NULL,4
+dbo,ClientMenus,TABLE,Priority,int,NOT NULL,5
+dbo,ClientUpdateRequests,TABLE,ID,int,NOT NULL,1
+dbo,ClientUpdateRequests,TABLE,ClientIp,varchar,NULL,2
+dbo,ClientUpdateRequests,TABLE,ClientAppVersion,varchar,NULL,3
+dbo,ClientUpdateRequests,TABLE,ClientServiceVersion,varchar,NULL,4
+dbo,ClientUpdateRequests,TABLE,RequestDatetime,datetime,NOT NULL,5
+dbo,ClientUpdates,TABLE,ID,int,NOT NULL,1
+dbo,ClientUpdates,TABLE,Title,nvarchar,NOT NULL,2
+dbo,ClientUpdates,TABLE,SetupType,int,NOT NULL,3
+dbo,ClientUpdates,TABLE,Version,varchar,NOT NULL,4
+dbo,ClientUpdates,TABLE,CreateDate,datetime,NOT NULL,5
+dbo,Controllers,TABLE,ID,int,NOT NULL,1
+dbo,Controllers,TABLE,ControllerIP,varchar,NOT NULL,2
+dbo,Controllers,TABLE,ControllerPort,int,NOT NULL,3
+dbo,Controllers,TABLE,TypeID,int,NOT NULL,4
+dbo,Controllers,TABLE,IsCheck,bit,NOT NULL,5
+dbo,Controllers,TABLE,GateId,int,NOT NULL,6
+dbo,Controllers,TABLE,IsNedap,bit,NOT NULL,7
+dbo,Customer_Messages,TABLE,Id,int,NOT NULL,1
+dbo,Customer_Messages,TABLE,CustomerId,int,NOT NULL,2
+dbo,Customer_Messages,TABLE,MessageId,int,NOT NULL,3
+dbo,CustomerCardLogs,TABLE,ID,int,NOT NULL,1
+dbo,CustomerCardLogs,TABLE,CustomerID,int,NOT NULL,2
+dbo,CustomerCardLogs,TABLE,Price,int,NOT NULL,3
+dbo,CustomerCardLogs,TABLE,CreateDate,datetime,NOT NULL,4
+dbo,CustomerCardLogs,TABLE,EndDate,datetime,NOT NULL,5
+dbo,CustomerCardLogs,TABLE,IsDeposit,bit,NOT NULL,6
+dbo,CustomerCardLogs,TABLE,UserID,int,NOT NULL,7
+dbo,CustomerCardLogs,TABLE,TagID,varchar,NOT NULL,8
+dbo,CustomerCardLogs,TABLE,GroupID,int,NOT NULL,9
+dbo,CustomerCardLogs,TABLE,IsRefund,bit,NOT NULL,10
+dbo,CustomerCardLogs,TABLE,TaradodID,bigint,NOT NULL,11
+dbo,CustomerCardLogs,TABLE,SendToServer,bit,NOT NULL,12
+dbo,CustomerCards,TABLE,ID,int,NOT NULL,1
+dbo,CustomerCards,TABLE,CustomerID,int,NOT NULL,2
+dbo,CustomerCards,TABLE,CustomerGoupID,int,NOT NULL,3
+dbo,CustomerCards,TABLE,TagID,varchar,NOT NULL,4
+dbo,CustomerCards,TABLE,StartDate,datetime,NOT NULL,5
+dbo,CustomerCards,TABLE,EndDate,datetime,NOT NULL,6
+dbo,CustomerCards,TABLE,IsExpire,bit,NULL,7
+dbo,CustomerCards,TABLE,MaxHour,int,NULL,8
+dbo,CustomerGroups,TABLE,ID,int,NOT NULL,1
+dbo,CustomerGroups,TABLE,Title,nvarchar,NOT NULL,2
+dbo,CustomerGroups,TABLE,Price,int,NOT NULL,3
+dbo,CustomerGroups,TABLE,Color,varchar,NULL,4
+dbo,CustomerGroups,TABLE,Icon,varbinary,NULL,5
+dbo,CustomerGroups,TABLE,Visible,bit,NOT NULL,6
+dbo,CustomerGroups,TABLE,IsDeleted,bit,NOT NULL,7
+dbo,CustomerGroups,TABLE,CheckPlate,bit,NOT NULL,8
+dbo,CustomerGroups,TABLE,PlateCount,int,NOT NULL,9
+dbo,CustomerGroups,TABLE,DailyCount,int,NULL,10
+dbo,CustomerGroups,TABLE,MonthlyCount,int,NULL,11
+dbo,CustomerGroups,TABLE,UsageCapacity,int,NULL,12
+dbo,CustomerLogHelper,TABLE,Id,bigint,NOT NULL,1
+dbo,CustomerLogHelper,TABLE,CustomerId,int,NOT NULL,2
+dbo,CustomerLogHelper,TABLE,EnterDateTime,datetime,NOT NULL,3
+dbo,CustomerLogHelper,TABLE,ExitDateTime,datetime,NULL,4
+dbo,CustomerLogs,TABLE,ID,bigint,NOT NULL,1
+dbo,CustomerLogs,TABLE,UserID,int,NOT NULL,2
+dbo,CustomerLogs,TABLE,TagID,varchar,NULL,3
+dbo,CustomerLogs,TABLE,Datetime,datetime,NOT NULL,4
+dbo,CustomerLogs,TABLE,Type,int,NULL,5
+dbo,CustomerLogs,TABLE,IsValid,bit,NULL,6
+dbo,CustomerLogs,TABLE,IsCheck,bit,NULL,7
+dbo,CustomerLogs,TABLE,GateId,int,NULL,8
+dbo,CustomerLogs,TABLE,ANPRPlateId,bigint,NOT NULL,9
+dbo,CustomerLogs,TABLE,PlateStatus,int,NULL,10
+dbo,CustomerLogs,TABLE,StatusId,int,NULL,11
+dbo,CustomerLogStatus,TABLE,Id,int,NOT NULL,1
+dbo,CustomerLogStatus,TABLE,StatusTitle,nvarchar,NOT NULL,2
+dbo,CustomerMessages,TABLE,Id,int,NOT NULL,1
+dbo,CustomerMessages,TABLE,UserId,int,NOT NULL,2
+dbo,CustomerMessages,TABLE,CreateDate,datetime,NOT NULL,3
+dbo,CustomerMessages,TABLE,Message,nvarchar,NOT NULL,4
+dbo,CustomerMessages,TABLE,Send,bit,NOT NULL,5
+dbo,CustomerPlates,TABLE,ID,int,NOT NULL,1
+dbo,CustomerPlates,TABLE,CustomerID,int,NOT NULL,2
+dbo,CustomerPlates,TABLE,P1,nvarchar,NOT NULL,3
+dbo,CustomerPlates,TABLE,P2,nvarchar,NOT NULL,4
+dbo,CustomerPlates,TABLE,P3,nvarchar,NOT NULL,5
+dbo,CustomerPlates,TABLE,P4,nvarchar,NOT NULL,6
+dbo,CustomerPlates,TABLE,IsActive,bit,NOT NULL,7
+dbo,CustomerPlates,TABLE,UpdateUserId,int,NOT NULL,8
+dbo,CustomerPlates,TABLE,UpdateDate,datetime,NOT NULL,9
+dbo,CustomerPlates,TABLE,CarDescription,nvarchar,NULL,10
+dbo,Customers,TABLE,ID,int,NOT NULL,1
+dbo,Customers,TABLE,FullName,nvarchar,NOT NULL,2
+dbo,Customers,TABLE,Mobile,varchar,NULL,3
+dbo,Customers,TABLE,ProfilePicture,varbinary,NULL,4
+dbo,Customers,TABLE,Active,bit,NOT NULL,5
+dbo,Customers,TABLE,Isdeleted,bit,NOT NULL,6
+dbo,Customers,TABLE,RegisterDate,datetime,NOT NULL,7
+dbo,Customers,TABLE,DailyCount,int,NULL,8
+dbo,Customers,TABLE,MonthlyCount,int,NULL,9
+dbo,Days,TABLE,ID,int,NOT NULL,1
+dbo,Days,TABLE,Title,nvarchar,NOT NULL,2
+dbo,Days,TABLE,DayNumber,int,NOT NULL,3
+dbo,Days,TABLE,DayTypeID,int,NOT NULL,4
+dbo,DayTypes,TABLE,ID,int,NOT NULL,1
+dbo,DayTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,DBVersion,TABLE,Id,int,NOT NULL,1
+dbo,DBVersion,TABLE,Version,varchar,NOT NULL,2
+dbo,DiscountAlertLogs,TABLE,ID,int,NOT NULL,1
+dbo,DiscountAlertLogs,TABLE,DiscountTypeID,int,NOT NULL,2
+dbo,DiscountAlertLogs,TABLE,DiscountCode,varchar,NOT NULL,3
+dbo,DiscountAlertLogs,TABLE,UsedPercent,int,NOT NULL,4
+dbo,DiscountAlertLogs,TABLE,CreateDate,datetime,NOT NULL,5
+dbo,DiscountCategorys,TABLE,ID,int,NOT NULL,1
+dbo,DiscountCategorys,TABLE,Title,nvarchar,NOT NULL,2
+dbo,DiscountCategorys,TABLE,Visible,bit,NOT NULL,3
+dbo,DiscountCodes,TABLE,ID,bigint,NOT NULL,1
+dbo,DiscountCodes,TABLE,DiscountID,int,NOT NULL,2
+dbo,DiscountCodes,TABLE,Code,varchar,NOT NULL,3
+dbo,DiscountCodes,TABLE,Active,bit,NOT NULL,4
+dbo,DiscountCodes,TABLE,Count,int,NOT NULL,5
+dbo,DiscountCodes,TABLE,UsedCount,int,NOT NULL,6
+dbo,DiscountCodes,TABLE,DailyCount,int,NULL,7
+dbo,DiscountCodes,TABLE,MaxCount,int,NULL,8
+dbo,DiscountCodes,TABLE,OrderId,int,NULL,9
+dbo,DiscountLogs,TABLE,ID,bigint,NOT NULL,1
+dbo,DiscountLogs,TABLE,DiscountCode,varchar,NOT NULL,2
+dbo,DiscountLogs,TABLE,TaradodID,bigint,NOT NULL,3
+dbo,DiscountLogs,TABLE,InsertDate,datetime,NOT NULL,4
+dbo,DiscountLogs,TABLE,SendToServer,bit,NOT NULL,5
+dbo,DiscountLogTemp,TABLE,ID,bigint,NOT NULL,1
+dbo,DiscountLogTemp,TABLE,Code,varchar,NOT NULL,2
+dbo,DiscountLogTemp,TABLE,TaradodID,bigint,NOT NULL,3
+dbo,DiscountLogTemp,TABLE,CodeType,int,NOT NULL,4
+dbo,Discounts,TABLE,ID,int,NOT NULL,1
+dbo,Discounts,TABLE,DiscountTypeID,int,NOT NULL,2
+dbo,Discounts,TABLE,CreateDate,datetime,NOT NULL,3
+dbo,Discounts,TABLE,ExpireDate,datetime,NOT NULL,4
+dbo,Discounts,TABLE,StartDate,datetime,NOT NULL,5
+dbo,Discounts,TABLE,DiscountCategoryID,int,NOT NULL,6
+dbo,DiscountTypes,TABLE,ID,int,NOT NULL,1
+dbo,DiscountTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,DiscountTypes,TABLE,Amount,int,NOT NULL,3
+dbo,DiscountTypes,TABLE,Minutes,int,NOT NULL,4
+dbo,DiscountTypes,TABLE,Observeble,bit,NOT NULL,5
+dbo,DiscountTypes,TABLE,DiscountPrice,int,NULL,6
+dbo,DiscountTypes,TABLE,PricingProfileID,int,NOT NULL,7
+dbo,EventLogs,TABLE,ID,bigint,NOT NULL,1
+dbo,EventLogs,TABLE,UserSessionID,bigint,NOT NULL,2
+dbo,EventLogs,TABLE,ActionFullname,nvarchar,NOT NULL,3
+dbo,EventLogs,TABLE,SPName,nvarchar,NULL,4
+dbo,EventLogs,TABLE,Description,nvarchar,NULL,5
+dbo,EventLogs,TABLE,ServerTime,datetime,NOT NULL,6
+dbo,ExtendDays,TABLE,ID,int,NOT NULL,1
+dbo,ExtendDays,TABLE,GroupID,int,NOT NULL,2
+dbo,ExtendDays,TABLE,Title,nvarchar,NOT NULL,3
+dbo,ExtendDays,TABLE,Days,int,NOT NULL,4
+dbo,ExtendDays,TABLE,Hours,int,NULL,5
+dbo,ExtendDays,TABLE,Coffiecent,int,NOT NULL,6
+dbo,ExtendDays,TABLE,DiscountPercent,int,NOT NULL,7
+dbo,ExtendDays,TABLE,Visible,bit,NOT NULL,8
+dbo,FailurePayReasons,TABLE,ID,int,NOT NULL,1
+dbo,FailurePayReasons,TABLE,ReasonDescription,nvarchar,NULL,2
+dbo,FailurePayReasons,TABLE,Priority,int,NOT NULL,3
+dbo,FailurePayReasons,TABLE,IsActive,bit,NOT NULL,4
+dbo,FailurePayReasons,TABLE,DynamicPrice,bit,NOT NULL,5
+dbo,FreeTime,TABLE,ID,int,NOT NULL,1
+dbo,FreeTime,TABLE,InputGateID,int,NOT NULL,2
+dbo,FreeTime,TABLE,OutputGateID,int,NOT NULL,3
+dbo,FreeTime,TABLE,Minute,int,NOT NULL,4
+dbo,FreeURL,TABLE,FreeURLID,int,NOT NULL,1
+dbo,FreeURL,TABLE,Controller,nvarchar,NULL,2
+dbo,FreeURL,TABLE,Action,nvarchar,NULL,3
+dbo,Gate_CarTypes,TABLE,Id,int,NOT NULL,1
+dbo,Gate_CarTypes,TABLE,GateId,int,NOT NULL,2
+dbo,Gate_CarTypes,TABLE,CarTypeId,int,NOT NULL,3
+dbo,Gate_CustomerGroups,TABLE,Id,int,NOT NULL,1
+dbo,Gate_CustomerGroups,TABLE,GateId,int,NOT NULL,2
+dbo,Gate_CustomerGroups,TABLE,CustomerGroupId,int,NOT NULL,3
+dbo,Gates,TABLE,ID,int,NOT NULL,1
+dbo,Gates,TABLE,Title,nvarchar,NULL,2
+dbo,Gates,TABLE,DeviceIDs,varchar,NULL,3
+dbo,Gates,TABLE,ComputerName,nvarchar,NULL,4
+dbo,Gates,TABLE,ComputerIP,nvarchar,NULL,5
+dbo,Gates,TABLE,GateTypeID,int,NOT NULL,6
+dbo,Gates,TABLE,CameraIP,nvarchar,NULL,7
+dbo,Gates,TABLE,CameraSnapshotUrl,nvarchar,NULL,8
+dbo,Gates,TABLE,RelayBoardTypeId,int,NOT NULL,9
+dbo,Gates,TABLE,ControllerIP,varchar,NULL,10
+dbo,Gates,TABLE,ControllerPort,int,NULL,11
+dbo,Gates,TABLE,RelayNumber,int,NOT NULL,12
+dbo,Gates,TABLE,CameraUser,nvarchar,NULL,13
+dbo,Gates,TABLE,CameraPass,nvarchar,NULL,14
+dbo,Gates,TABLE,PCPOSEnable,bit,NOT NULL,15
+dbo,Gates,TABLE,PosDeviceId,int,NOT NULL,16
+dbo,Gates,TABLE,LoopEnable,bit,NOT NULL,17
+dbo,Gates,TABLE,LoopPort,int,NOT NULL,18
+dbo,Gates,TABLE,ButtonWidth,int,NOT NULL,19
+dbo,Gates,TABLE,ButtonLenght,int,NOT NULL,20
+dbo,Gates,TABLE,Culomns,int,NOT NULL,21
+dbo,Gates,TABLE,FontSize,int,NOT NULL,22
+dbo,Gates,TABLE,IconWidth,int,NOT NULL,23
+dbo,Gates,TABLE,IconLenght,int,NOT NULL,24
+dbo,Gates,TABLE,RoadblockEnable,bit,NOT NULL,25
+dbo,Gates,TABLE,AutoPrint,bit,NOT NULL,26
+dbo,Gates,TABLE,Kiosk,bit,NOT NULL,27
+dbo,Gates,TABLE,ANPRComputerPort,int,NOT NULL,28
+dbo,Gates,TABLE,ANPREnable,bit,NOT NULL,29
+dbo,Gates,TABLE,VerificationComputerPort,int,NOT NULL,30
+dbo,Gates,TABLE,ReaderEnable,bit,NOT NULL,31
+dbo,Gates,TABLE,ReaderTypeId,int,NOT NULL,32
+dbo,Gates,TABLE,SerialPort,varchar,NULL,33
+dbo,Gates,TABLE,BarrierMonitoringEnable,bit,NOT NULL,34
+dbo,Gates,TABLE,BarrierPortNumber,int,NOT NULL,35
+dbo,Gates,TABLE,RecieptPortNumber,int,NOT NULL,36
+dbo,Gates,TABLE,LoopPortNumber,int,NOT NULL,37
+dbo,Gates,TABLE,LoopInputNumber,int,NOT NULL,38
+dbo,Gates,TABLE,BarrierLogInputNumber,int,NOT NULL,39
+dbo,Gates,TABLE,BarrierOutputNumber,int,NOT NULL,40
+dbo,Gates,TABLE,TicketInputNumber,int,NOT NULL,41
+dbo,GateTypes,TABLE,ID,int,NOT NULL,1
+dbo,GateTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,Group_Days,TABLE,ID,int,NOT NULL,1
+dbo,Group_Days,TABLE,CustomerGroupID,int,NOT NULL,2
+dbo,Group_Days,TABLE,DayID,int,NOT NULL,3
+dbo,Group_Gates,TABLE,ID,int,NOT NULL,1
+dbo,Group_Gates,TABLE,CustomerGroupID,int,NOT NULL,2
+dbo,Group_Gates,TABLE,GateID,int,NOT NULL,3
+dbo,Guests,TABLE,ID,bigint,NOT NULL,1
+dbo,Guests,TABLE,UserID,int,NOT NULL,2
+dbo,Guests,TABLE,TaradodID,bigint,NOT NULL,3
+dbo,Guests,TABLE,Epan,varchar,NULL,4
+dbo,Guests,TABLE,CreateDate,datetime,NOT NULL,5
+dbo,Guests,TABLE,Description,nvarchar,NULL,6
+dbo,Guests,TABLE,SendToServer,bit,NOT NULL,7
+dbo,HoliDays,TABLE,ID,int,NOT NULL,1
+dbo,HoliDays,TABLE,Date,date,NOT NULL,2
+dbo,HoliDays,TABLE,IsEnable,bit,NOT NULL,3
+dbo,HoliDays,TABLE,DayTypeID,int,NOT NULL,4
+dbo,KioskPlates,TABLE,Id,int,NOT NULL,1
+dbo,KioskPlates,TABLE,ANPRPlateId,bigint,NOT NULL,2
+dbo,KioskPlates,TABLE,PlateId,int,NOT NULL,3
+dbo,Locations,TABLE,ID,int,NOT NULL,1
+dbo,Locations,TABLE,LocationName,nvarchar,NOT NULL,2
+dbo,Messages,TABLE,ID,int,NOT NULL,1
+dbo,Messages,TABLE,Message,nvarchar,NOT NULL,2
+dbo,Messages,TABLE,Priority,int,NULL,3
+dbo,Messages,TABLE,MessageColor,varchar,NOT NULL,4
+dbo,Messages,TABLE,IsActive,bit,NOT NULL,5
+dbo,Messages,TABLE,GateTypeID,int,NULL,6
+dbo,ModbusMappings,TABLE,Id,int,NOT NULL,1
+dbo,ModbusMappings,TABLE,Number,int,NOT NULL,2
+dbo,ModbusMappings,TABLE,String,varchar,NOT NULL,3
+dbo,OutPutFreeTime,TABLE,ID,int,NOT NULL,1
+dbo,OutPutFreeTime,TABLE,Output1GateID,int,NOT NULL,2
+dbo,OutPutFreeTime,TABLE,Output2GateID,int,NOT NULL,3
+dbo,OutPutFreeTime,TABLE,FreeTime,int,NOT NULL,4
+dbo,ParkNights,TABLE,Id,int,NOT NULL,1
+dbo,ParkNights,TABLE,UserId,int,NOT NULL,2
+dbo,ParkNights,TABLE,DateTime,datetime,NOT NULL,3
+dbo,ParkNights,TABLE,CreateDate,datetime,NOT NULL,4
+dbo,ParkNights,TABLE,P1,nvarchar,NOT NULL,5
+dbo,ParkNights,TABLE,P2,nvarchar,NOT NULL,6
+dbo,ParkNights,TABLE,P3,nvarchar,NOT NULL,7
+dbo,ParkNights,TABLE,P4,nvarchar,NOT NULL,8
+dbo,ParkNights,TABLE,Description,nvarchar,NULL,9
+dbo,ParkNightSys,TABLE,LogId,bigint,NOT NULL,1
+dbo,ParkNightSys,TABLE,LogType,int,NOT NULL,2
+dbo,ParkNightSys,TABLE,CreateDate,datetime,NOT NULL,3
+dbo,ParkNightSys,TABLE,EnterDate,datetime,NOT NULL,4
+dbo,ParkNightSys,TABLE,P1,nvarchar,NULL,5
+dbo,ParkNightSys,TABLE,P2,nvarchar,NULL,6
+dbo,ParkNightSys,TABLE,P3,nvarchar,NULL,7
+dbo,ParkNightSys,TABLE,P4,nvarchar,NULL,8
+dbo,ParkNightSys,TABLE,TagId,varchar,NULL,9
+dbo,PartitionTimes,TABLE,ID,int,NOT NULL,1
+dbo,PartitionTimes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,PartitionTimes,TABLE,StartTime,time,NOT NULL,3
+dbo,PartitionTimes,TABLE,EndTime,time,NOT NULL,4
+dbo,PartitionTimes,TABLE,Price,int,NOT NULL,5
+dbo,PartitionTimes,TABLE,CarTypeID,int,NOT NULL,6
+dbo,PartitionTimes,TABLE,PricingProfileID,int,NOT NULL,7
+dbo,PaymentMethods,TABLE,ID,int,NOT NULL,1
+dbo,PaymentMethods,TABLE,Title,nvarchar,NOT NULL,2
+dbo,PaymentMethods,TABLE,ShortKey,nvarchar,NULL,3
+dbo,PaymentMethods,TABLE,Icon,varbinary,NULL,4
+dbo,PaymentMethods,TABLE,IconURL,nvarchar,NULL,5
+dbo,PaymentMethods,TABLE,Priority,int,NULL,6
+dbo,PaymentMethods,TABLE,Visible,bit,NULL,7
+dbo,PaymentMethods,TABLE,ExitDeadline,int,NOT NULL,8
+dbo,PaymentMethods,TABLE,DeviceIDs,nvarchar,NOT NULL,9
+dbo,PaymentRequests,TABLE,ID,bigint,NOT NULL,1
+dbo,PaymentRequests,TABLE,RequsetDateTime,datetime,NOT NULL,2
+dbo,PaymentRequests,TABLE,PaymentMethodID,int,NULL,3
+dbo,PaymentRequests,TABLE,UserID,int,NOT NULL,4
+dbo,PaymentRequests,TABLE,Price,money,NOT NULL,5
+dbo,PaymentRequests,TABLE,Description,nvarchar,NULL,6
+dbo,PaymentRequests,TABLE,Status,bigint,NOT NULL,7
+dbo,PcPosCompanies,TABLE,ID,int,NOT NULL,1
+dbo,PcPosCompanies,TABLE,Company,nvarchar,NOT NULL,2
+dbo,PlateMappings,TABLE,Number,int,NOT NULL,1
+dbo,PlateMappings,TABLE,Letter,nvarchar,NOT NULL,2
+dbo,PlateMappings,TABLE,Description,nvarchar,NULL,3
+dbo,Plates,TABLE,ID,int,NOT NULL,1
+dbo,Plates,TABLE,CreateDate,datetime,NOT NULL,2
+dbo,Plates,TABLE,UpdateDate,datetime,NOT NULL,3
+dbo,Plates,TABLE,P1,nvarchar,NULL,4
+dbo,Plates,TABLE,P2,nvarchar,NULL,5
+dbo,Plates,TABLE,P3,nvarchar,NULL,6
+dbo,Plates,TABLE,P4,nvarchar,NULL,7
+dbo,Plates,TABLE,FailureCount,int,NOT NULL,8
+dbo,PosDetails,TABLE,ID,bigint,NOT NULL,1
+dbo,PosDetails,TABLE,InsertDateTime,datetime,NOT NULL,2
+dbo,PosDetails,TABLE,ResponseCode,nvarchar,NULL,3
+dbo,PosDetails,TABLE,Descriptin,nvarchar,NULL,4
+dbo,PosDetails,TABLE,Amount,nvarchar,NULL,5
+dbo,PosDevices,TABLE,Id,int,NOT NULL,1
+dbo,PosDevices,TABLE,Title,nvarchar,NOT NULL,2
+dbo,PosDevices,TABLE,PcPosCompanyId,int,NOT NULL,3
+dbo,PosDevices,TABLE,IP,varchar,NOT NULL,4
+dbo,PosDevices,TABLE,Port,int,NOT NULL,5
+dbo,PosDevices,TABLE,SerialNumber,varchar,NULL,6
+dbo,PosDevices,TABLE,AcceptorId,varchar,NULL,7
+dbo,PosDevices,TABLE,TerminalId,varchar,NULL,8
+dbo,PosTransactions,TABLE,Id,int,NOT NULL,1
+dbo,PosTransactions,TABLE,UserId,int,NOT NULL,2
+dbo,PosTransactions,TABLE,MerchantName,nvarchar,NULL,3
+dbo,PosTransactions,TABLE,PosTerminalNo,bigint,NOT NULL,4
+dbo,PosTransactions,TABLE,Amount,int,NOT NULL,5
+dbo,PosTransactions,TABLE,TransactionDateTime,datetime,NOT NULL,6
+dbo,PosTransactions,TABLE,Pan,varchar,NOT NULL,7
+dbo,PosTransactions,TABLE,Status,nvarchar,NOT NULL,8
+dbo,PricingMethods,TABLE,ID,int,NOT NULL,1
+dbo,PricingMethods,TABLE,PricingProfileID,int,NOT NULL,2
+dbo,PricingMethods,TABLE,CarTypeID,int,NOT NULL,3
+dbo,PricingMethods,TABLE,DayTypeID,int,NOT NULL,4
+dbo,PricingMethods,TABLE,CheckType,int,NOT NULL,5
+dbo,PricingMethods,TABLE,MinCount,int,NOT NULL,6
+dbo,PricingMethods,TABLE,MaxCount,int,NOT NULL,7
+dbo,PricingMethods,TABLE,CheckDays,int,NOT NULL,8
+dbo,PricingMethods,TABLE,PlateCodes,varchar,NULL,9
+dbo,PricingMethods,TABLE,OperationType,int,NOT NULL,10
+dbo,PricingMethods,TABLE,TimeOperationType,int,NOT NULL,11
+dbo,PricingMethods,TABLE,ParkTime,int,NOT NULL,12
+dbo,PricingMethods,TABLE,StartTime,varchar,NULL,13
+dbo,PricingMethods,TABLE,EndTime,varchar,NULL,14
+dbo,PricingMethods,TABLE,Priority,int,NOT NULL,15
+dbo,PricingProfiles,TABLE,ID,int,NOT NULL,1
+dbo,PricingProfiles,TABLE,ProfileTitle,nvarchar,NOT NULL,2
+dbo,PricingProfiles,TABLE,IsDefault,bit,NOT NULL,3
+dbo,PublishPartitionTimes,TABLE,ID,bigint,NOT NULL,1
+dbo,PublishPartitionTimes,TABLE,StartDateTime,datetime,NOT NULL,2
+dbo,PublishPartitionTimes,TABLE,EndDateTime,datetime,NOT NULL,3
+dbo,PublishPartitionTimes,TABLE,PartitionTimeID,int,NOT NULL,4
+dbo,PublishPartitionTimes,TABLE,DayTypeID,int,NOT NULL,5
+dbo,PublishPartitionTimes,TABLE,CarTypeID,int,NOT NULL,6
+dbo,ReaderTypes,TABLE,Id,int,NOT NULL,1
+dbo,ReaderTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,ReaderTypes,TABLE,ReadType,int,NOT NULL,3
+dbo,RealIncomes,TABLE,ID,int,NOT NULL,1
+dbo,RealIncomes,TABLE,CreateDateTime,datetime,NOT NULL,2
+dbo,RealIncomes,TABLE,DateTime,datetime,NOT NULL,3
+dbo,RealIncomes,TABLE,Pecuniary,int,NOT NULL,4
+dbo,RealIncomes,TABLE,Pos,int,NOT NULL,5
+dbo,RealIncomes,TABLE,CreatorUserID,int,NOT NULL,6
+dbo,RealIncomes,TABLE,UpdateUserID,int,NULL,7
+dbo,RealIncomes,TABLE,Description,nvarchar,NULL,8
+dbo,RealIncomes,TABLE,IsEdited,int,NULL,9
+dbo,RealIncomes,TABLE,UserDescription,nvarchar,NULL,10
+dbo,RealIncomes,TABLE,SupervisorID,int,NOT NULL,11
+dbo,RealIncomes,TABLE,SendToServer,bit,NOT NULL,12
+dbo,RealIncomes,TABLE,SetPosTransaction,bit,NOT NULL,13
+dbo,RealIncomes,TABLE,Closed,bit,NOT NULL,14
+dbo,RelayBoardTypes,TABLE,Id,int,NOT NULL,1
+dbo,RelayBoardTypes,TABLE,Title,nvarchar,NOT NULL,2
+dbo,RelayBoardTypes,TABLE,Username,nvarchar,NULL,3
+dbo,RelayBoardTypes,TABLE,Password,nvarchar,NULL,4
+dbo,SerialBoards,TABLE,Id,int,NOT NULL,1
+dbo,SerialBoards,TABLE,PortNumber,int,NOT NULL,2
+dbo,SerialBoards,TABLE,TextValue,varchar,NOT NULL,3
+dbo,Settings,TABLE,Id,int,NOT NULL,1
+dbo,Settings,TABLE,SettingKey,nvarchar,NOT NULL,2
+dbo,Settings,TABLE,SettingValue,nvarchar,NOT NULL,3
+dbo,SharedCameraGates,TABLE,Id,int,NOT NULL,1
+dbo,SharedCameraGates,TABLE,ParentGateId,int,NOT NULL,2
+dbo,SharedCameraGates,TABLE,SecondaryGateId,int,NOT NULL,3
+dbo,Snapshot,TABLE,ID,bigint,NOT NULL,1
+dbo,Snapshot,TABLE,DateTime,datetime,NOT NULL,2
+dbo,Snapshot,TABLE,InputImage,varbinary,NULL,3
+dbo,Snapshot,TABLE,TagID,varchar,NULL,4
+dbo,Snapshot,TABLE,DateTimeString,varchar,NULL,5
+dbo,Snapshot,TABLE,IsOut,bit,NOT NULL,6
+dbo,Snapshot,TABLE,ReaderRequest,bit,NOT NULL,7
+dbo,Snapshot,TABLE,RequestTypeID,int,NULL,8
+dbo,Snapshot,TABLE,UserID,int,NULL,9
+dbo,Snapshot,TABLE,CustomerLogID,bigint,NULL,10
+dbo,SpecialCodeReasons,TABLE,ID,int,NOT NULL,1
+dbo,SpecialCodeReasons,TABLE,ReasonDescription,nvarchar,NULL,2
+dbo,SpecialCodeReasons,TABLE,Priority,int,NOT NULL,3
+dbo,SpecialCodeReasons,TABLE,IsActive,bit,NOT NULL,4
+dbo,SpecialCodes,TABLE,ID,bigint,NOT NULL,1
+dbo,SpecialCodes,TABLE,Code,varchar,NOT NULL,2
+dbo,SpecialCodes,TABLE,StartDate,datetime,NOT NULL,3
+dbo,SpecialCodes,TABLE,ExpireDate,datetime,NOT NULL,4
+dbo,SpecialCodes,TABLE,Count,int,NULL,5
+dbo,SpecialCodes,TABLE,Price,int,NOT NULL,6
+dbo,SpecialCodes,TABLE,UsedCount,int,NOT NULL,7
+dbo,SpecialCodes,TABLE,Title,nvarchar,NULL,8
+dbo,SpecialCodes,TABLE,DynamicPrice,bit,NOT NULL,9
+dbo,SpecialCodes,TABLE,VATEnable,bit,NOT NULL,10
+dbo,Taradods,TABLE,ID,bigint,NOT NULL,1
+dbo,Taradods,TABLE,CarTypeID,int,NOT NULL,2
+dbo,Taradods,TABLE,CardID,varchar,NOT NULL,3
+dbo,Taradods,TABLE,EnrtyDateTime,datetime,NOT NULL,4
+dbo,Taradods,TABLE,EntryUserID,int,NOT NULL,5
+dbo,Taradods,TABLE,InputGateID,int,NOT NULL,6
+dbo,Taradods,TABLE,EntryImage,image,NULL,7
+dbo,Taradods,TABLE,ExitDateTime,datetime,NULL,8
+dbo,Taradods,TABLE,ExitUserID,int,NULL,9
+dbo,Taradods,TABLE,OutputGateID,int,NOT NULL,10
+dbo,Taradods,TABLE,ExitImage,image,NULL,11
+dbo,Taradods,TABLE,TotalPrice,money,NULL,12
+dbo,Taradods,TABLE,FinalPrice,int,NULL,13
+dbo,Taradods,TABLE,PaymentID,int,NULL,14
+dbo,Taradods,TABLE,PosDetailID,bigint,NULL,15
+dbo,Taradods,TABLE,IsLost,bit,NULL,16
+dbo,Taradods,TABLE,Cash,int,NULL,17
+dbo,Taradods,TABLE,Pos,int,NULL,18
+dbo,Taradods,TABLE,Refund,int,NULL,19
+dbo,Taradods,TABLE,UserDescription,nvarchar,NULL,20
+dbo,Taradods,TABLE,PlateID,int,NULL,21
+dbo,Taradods,TABLE,SendToServer,bit,NOT NULL,22
+dbo,Taradods,TABLE,VATPrice,int,NULL,23
+dbo,Taradods,TABLE,ANPRPlateId,bigint,NULL,24
+dbo,Taradods,TABLE,RoundPrice,int,NOT NULL,25
+dbo,Taradods,TABLE,ExitPlateID,int,NULL,26
+dbo,Taradods,TABLE,ExitANPRPlateID,bigint,NULL,27
+dbo,Taradods,TABLE,Epan,varchar,NULL,28
+dbo,Taradods,TABLE,PosTerminalNo,bigint,NULL,29
+dbo,TaradodsCount,TABLE,ID,bigint,NOT NULL,1
+dbo,TaradodsCount,TABLE,DateTime,datetime,NULL,2
+dbo,TaradodsCount,TABLE,EntryCount,bigint,NULL,3
+dbo,TaradodsCount,TABLE,ExitCount,bigint,NULL,4
+dbo,TaradodsCount,TABLE,EntryCardCount,bigint,NULL,5
+dbo,TaradodsCount,TABLE,ExitCardCount,bigint,NULL,6
+dbo,TaradodSummary,TABLE,ID,bigint,NOT NULL,1
+dbo,TaradodSummary,TABLE,EntryDate,date,NOT NULL,2
+dbo,TaradodSummary,TABLE,EntryUserID,int,NOT NULL,3
+dbo,TaradodSummary,TABLE,CarTypeID,int,NOT NULL,4
+dbo,TaradodSummary,TABLE,InputGateID,int,NOT NULL,5
+dbo,TaradodSummary,TABLE,ExitDate,date,NULL,6
+dbo,TaradodSummary,TABLE,ExitUserID,int,NULL,7
+dbo,TaradodSummary,TABLE,OutputGateID,int,NULL,8
+dbo,TaradodSummary,TABLE,TotalPrice,money,NULL,9
+dbo,TaradodSummary,TABLE,FinalPrice,int,NULL,10
+dbo,TaradodSummary,TABLE,Cash,int,NULL,11
+dbo,TaradodSummary,TABLE,Pos,int,NULL,12
+dbo,TaradodSummary,TABLE,PlateID,int,NULL,13
+dbo,TaradodSummary,TABLE,VATPrice,int,NULL,14
+dbo,TaradodSummary,TABLE,RoundPrice,int,NULL,15
+dbo,UserLogoffReasons,TABLE,ID,int,NOT NULL,1
+dbo,UserLogoffReasons,TABLE,Title,nvarchar,NOT NULL,2
+dbo,UserLogoffReasons,TABLE,Description,nvarchar,NULL,3
+dbo,UserSessions,TABLE,ID,bigint,NOT NULL,1
+dbo,UserSessions,TABLE,UserLogoffReasonID,int,NULL,2
+dbo,UserSessions,TABLE,UserGuid,uniqueidentifier,NOT NULL,3
+dbo,UserSessions,TABLE,UserName,nvarchar,NOT NULL,4
+dbo,UserSessions,TABLE,ClientIP,nvarchar,NOT NULL,5
+dbo,UserSessions,TABLE,ClientPort,int,NOT NULL,6
+dbo,UserSessions,TABLE,ServerLoginTime,datetime,NOT NULL,7
+dbo,UserSessions,TABLE,ServerLogoffTime,datetime,NULL,8
+dbo,UserSessions,TABLE,LastActivity,datetime,NULL,9
+dbo,UserSessions,TABLE,AppType,nvarchar,NULL,10
+dbo,VerificationLogs,TABLE,ID,bigint,NOT NULL,1
+dbo,VerificationLogs,TABLE,CSN,varchar,NOT NULL,2
+dbo,VerificationLogs,TABLE,LogType,int,NOT NULL,3
+dbo,VerificationLogs,TABLE,IsValid,bit,NOT NULL,4
+dbo,"View_Customer_Cards_Detials ",VIEW,FullName,nvarchar,NOT NULL,1
+dbo,"View_Customer_Cards_Detials ",VIEW,Mobile,varchar,NULL,2
+dbo,"View_Customer_Cards_Detials ",VIEW,Active,bit,NOT NULL,3
+dbo,"View_Customer_Cards_Detials ",VIEW,TagID,varchar,NOT NULL,4
+dbo,"View_Customer_Cards_Detials ",VIEW,StartDate,datetime,NOT NULL,5
+dbo,"View_Customer_Cards_Detials ",VIEW,EndDate,datetime,NOT NULL,6
+dbo,"View_Customer_Cards_Detials ",VIEW,Title,nvarchar,NOT NULL,7
+dbo,"View_Customer_Cards_Detials ",VIEW,P1,nvarchar,NOT NULL,8
+dbo,"View_Customer_Cards_Detials ",VIEW,P2,nvarchar,NOT NULL,9
+dbo,"View_Customer_Cards_Detials ",VIEW,P3,nvarchar,NOT NULL,10
+dbo,"View_Customer_Cards_Detials ",VIEW,P4,nvarchar,NOT NULL,11
+dbo,"View_Customer_Cards_Detials ",VIEW,CarDescription,nvarchar,NULL,12
+dbo,View_FinancialReports,VIEW,Date_Farsi,nvarchar,NULL,1
+dbo,View_FinancialReports,VIEW,TaradodCount,int,NULL,2
+dbo,View_FinancialReports,VIEW,TotalFinalPrice,int,NULL,3
+dbo,View_FinancialReports,VIEW,TotalWebIncome,int,NULL,4
+dbo,View_Taradods_PBI,VIEW,id,bigint,NOT NULL,1
+dbo,View_Taradods_PBI,VIEW,GuestsTaradodID,bigint,NULL,2
+dbo,View_Taradods_PBI,VIEW,DiscountLogsTaradodID,bigint,NULL,3
+dbo,View_Taradods_PBI,VIEW,CustomerTaradodID,bigint,NULL,4
+dbo,View_Taradods_PBI,VIEW,ExitUser,nvarchar,NOT NULL,5
+dbo,View_Taradods_PBI,VIEW,CarTypeID,int,NOT NULL,6
+dbo,View_Taradods_PBI,VIEW,CardID,varchar,NOT NULL,7
+dbo,View_Taradods_PBI,VIEW,EnrtyDateTime,datetime,NOT NULL,8
+dbo,View_Taradods_PBI,VIEW,InputGateID,int,NOT NULL,9
+dbo,View_Taradods_PBI,VIEW,ExitDateTime,datetime,NULL,10
+dbo,View_Taradods_PBI,VIEW,OutputGateID,int,NOT NULL,11
+dbo,View_Taradods_PBI,VIEW,TotalPrice,money,NULL,12
+dbo,View_Taradods_PBI,VIEW,FinalPrice,int,NULL,13
+dbo,View_Taradods_PBI,VIEW,Cash,int,NULL,14
+dbo,View_Taradods_PBI,VIEW,Pos,int,NULL,15
+dbo,View_Taradods_PBI,VIEW,VATPrice,int,NULL,16
+dbo,View_Taradods_PBI,VIEW,PlateID,int,NULL,17
+dbo,View_Taradods_PBI,VIEW,OutputGate,nvarchar,NULL,18
+dbo,View_Taradods_PBI,VIEW,InputGate,nvarchar,NULL,19
+dbo,ViewCarPrice,VIEW,ID,int,NOT NULL,1
+dbo,ViewCarPrice,VIEW,PricingProfileID,int,NOT NULL,2
+dbo,ViewCarPrice,VIEW,CarTypeID,int,NOT NULL,3
+dbo,ViewCarPrice,VIEW,DayTypeID,int,NOT NULL,4
+dbo,ViewCarPrice,VIEW,InputCost,int,NOT NULL,5
+dbo,ViewCarPrice,VIEW,InputTime,int,NOT NULL,6
+dbo,ViewCarPrice,VIEW,PeriodSize,int,NOT NULL,7
+dbo,ViewCarPrice,VIEW,PeriodPrice,int,NOT NULL,8
+dbo,ViewCarPrice,VIEW,FirstPeriodTime,int,NULL,9
+dbo,ViewCarPrice,VIEW,FirstPeriodTimeCoefficient,float,NULL,10
+dbo,ViewCarPrice,VIEW,PeriodTimeCoefficient,float,NOT NULL,11
+dbo,ViewCarPrice,VIEW,CarTypeTitle,nvarchar,NOT NULL,12
+dbo,ViewCarPrice,VIEW,DayTypeTitle,nvarchar,NOT NULL,13
+dbo,ViewCarPrice,VIEW,ProfileTitle,nvarchar,NOT NULL,14
+dbo,ViewCarPrice,VIEW,CalculationMethod,int,NOT NULL,15
+dbo,ViewCarPrice,VIEW,NightBoardingParkPrice,int,NOT NULL,16
+dbo,ViewCarPrice,VIEW,BoardingParkInputPriceEnable,bit,NOT NULL,17
+dbo,ViewCarPrice,VIEW,BoardingHours,int,NOT NULL,18
+dbo,ViewCarPrice,VIEW,Night2IncreasePrice,int,NOT NULL,19
+dbo,ViewCarPrice,VIEW,Night3IncreasePrice,int,NOT NULL,20
+dbo,ViewCarPrice,VIEW,Night4IncreasePrice,int,NOT NULL,21
+dbo,ViewCarPrice,VIEW,Night5IncreasePrice,int,NOT NULL,22
+dbo,ViewDiscountCodes,VIEW,ID,bigint,NOT NULL,1
+dbo,ViewDiscountCodes,VIEW,DiscountTypeID,int,NOT NULL,2
+dbo,ViewDiscountCodes,VIEW,DiscountCategoryID,int,NOT NULL,3
+dbo,ViewDiscountCodes,VIEW,DiscountType,nvarchar,NOT NULL,4
+dbo,ViewDiscountCodes,VIEW,CategoryType,nvarchar,NOT NULL,5
+dbo,ViewDiscountCodes,VIEW,Amount,int,NOT NULL,6
+dbo,ViewDiscountCodes,VIEW,Code,varchar,NULL,7
+dbo,ViewDiscountCodes,VIEW,Active,bit,NOT NULL,8
+dbo,ViewDiscountCodes,VIEW,StartDate,datetime,NOT NULL,9
+dbo,ViewDiscountCodes,VIEW,ExpireDate,datetime,NOT NULL,10
+dbo,ViewDiscountCodes,VIEW,UsedCount,int,NOT NULL,11
+dbo,ViewDiscountCodes,VIEW,DailyCount,int,NULL,12
+dbo,ViewDiscountCodes,VIEW,MaxCount,int,NULL,13
+dbo,ViewPartitionTimes,VIEW,ID,int,NOT NULL,1
+dbo,ViewPartitionTimes,VIEW,Title,nvarchar,NOT NULL,2
+dbo,ViewPartitionTimes,VIEW,StartTime,time,NOT NULL,3
+dbo,ViewPartitionTimes,VIEW,EndTime,time,NOT NULL,4
+dbo,ViewPartitionTimes,VIEW,Price,int,NOT NULL,5
+dbo,ViewPartitionTimes,VIEW,CarType,nvarchar,NOT NULL,6
+dbo,ViewPartitionTimes,VIEW,CarTypeID,int,NOT NULL,7
+dbo,ViewPartitionTimes,VIEW,ProfileTitle,nvarchar,NOT NULL,8
+dbo,ViewPartitionTimes,VIEW,ProfileID,int,NOT NULL,9
+dbo,ViewPricingMethod,VIEW,ID,int,NOT NULL,1
+dbo,ViewPricingMethod,VIEW,ProfileTitle,nvarchar,NOT NULL,2
+dbo,ViewPricingMethod,VIEW,CheckTypeTitle,nvarchar,NOT NULL,3
+dbo,ViewPricingMethod,VIEW,ProfileID,int,NOT NULL,4
+dbo,ViewPricingMethod,VIEW,CarTypeID,int,NOT NULL,5
+dbo,ViewPricingMethod,VIEW,DayTypeID,int,NOT NULL,6
+dbo,ViewPricingMethod,VIEW,MinCount,int,NOT NULL,7
+dbo,ViewPricingMethod,VIEW,MaxCount,int,NOT NULL,8
+dbo,ViewPricingMethod,VIEW,CheckDays,int,NOT NULL,9
+dbo,ViewPricingMethod,VIEW,CarTypeTitle,nvarchar,NOT NULL,10
+dbo,ViewPricingMethod,VIEW,DayTypeTitle,nvarchar,NOT NULL,11
+dbo,ViewPricingMethod,VIEW,PlateCodes,varchar,NULL,12
+dbo,ViewPricingMethod,VIEW,OperationType,int,NOT NULL,13
+dbo,ViewPricingMethod,VIEW,TimeOperationType,int,NOT NULL,14
+dbo,ViewPricingMethod,VIEW,CheckType,int,NOT NULL,15
+dbo,ViewPricingMethod,VIEW,ParkTime,int,NOT NULL,16
+dbo,ViewPricingMethod,VIEW,StartTime,varchar,NULL,17
+dbo,ViewPricingMethod,VIEW,EndTime,varchar,NULL,18
+dbo,ViewPricingMethod,VIEW,Priority,int,NOT NULL,19
+dbo,ViewPublishPartitionTimes,VIEW,ID,bigint,NOT NULL,1
+dbo,ViewPublishPartitionTimes,VIEW,StartDateTime,datetime,NOT NULL,2
+dbo,ViewPublishPartitionTimes,VIEW,EndDateTime,datetime,NOT NULL,3
+dbo,ViewPublishPartitionTimes,VIEW,PartitionTimeID,int,NOT NULL,4
+dbo,ViewPublishPartitionTimes,VIEW,DayTypeID,int,NOT NULL,5
+dbo,ViewPublishPartitionTimes,VIEW,CarTypeID,int,NOT NULL,6
+dbo,ViewPublishPartitionTimes,VIEW,PartitionTimeTitle,nvarchar,NOT NULL,7
+dbo,ViewPublishPartitionTimes,VIEW,DayTypeTitle,nvarchar,NOT NULL,8
+dbo,ViewPublishPartitionTimes,VIEW,CarTypeTitle,nvarchar,NOT NULL,9
+dbo,ViewPublishPartitionTimes,VIEW,ProfileTitle,nvarchar,NOT NULL,10
+dbo,VipZoneLogs,TABLE,Id,int,NOT NULL,1
+dbo,VipZoneLogs,TABLE,TaradodId,bigint,NOT NULL,2
+dbo,VipZoneLogs,TABLE,EnterUserId,int,NOT NULL,3
+dbo,VipZoneLogs,TABLE,EnterGateId,int,NOT NULL,4
+dbo,VipZoneLogs,TABLE,EnterDate,datetime,NOT NULL,5
+dbo,VipZoneLogs,TABLE,ExitUserId,int,NULL,6
+dbo,VipZoneLogs,TABLE,ExitGateId,int,NULL,7
+dbo,VipZoneLogs,TABLE,ExitDate,datetime,NULL,8
+org,CustomerOrders,TABLE,Id,int,NOT NULL,1
+org,CustomerOrders,TABLE,OrderKey,varchar,NOT NULL,2
+org,CustomerOrders,TABLE,CreateDate,datetime,NOT NULL,3
+org,CustomerOrders,TABLE,UserId,int,NOT NULL,4
+org,CustomerOrders,TABLE,CustomerCount,int,NOT NULL,5
+org,CustomerOrders,TABLE,ExtendDayId,int,NOT NULL,6
+org,CustomerOrders,TABLE,UnitPrice,int,NOT NULL,7
+org,CustomerOrders,TABLE,UnitVATPrice,int,NOT NULL,8
+org,CustomerOrders,TABLE,Price,int,NOT NULL,9
+org,CustomerOrders,TABLE,OrderStateId,int,NOT NULL,10
+org,DiscountOrders,TABLE,Id,int,NOT NULL,1
+org,DiscountOrders,TABLE,OrderKey,varchar,NOT NULL,2
+org,DiscountOrders,TABLE,CreateDate,datetime,NOT NULL,3
+org,DiscountOrders,TABLE,UserId,int,NOT NULL,4
+org,DiscountOrders,TABLE,DiscountCodeId,bigint,NOT NULL,5
+org,DiscountOrders,TABLE,DiscountCount,int,NOT NULL,6
+org,DiscountOrders,TABLE,UnitPrice,int,NOT NULL,7
+org,DiscountOrders,TABLE,UnitVATPrice,int,NOT NULL,8
+org,DiscountOrders,TABLE,Price,int,NOT NULL,9
+org,DiscountOrders,TABLE,OrderStateId,int,NOT NULL,10
+org,Factors,TABLE,Id,int,NOT NULL,1
+org,Factors,TABLE,OrderType,int,NOT NULL,2
+org,Factors,TABLE,OrderId,int,NOT NULL,3
+org,Factors,TABLE,Fullname,nvarchar,NOT NULL,4
+org,Factors,TABLE,EconomicCode,varchar,NULL,5
+org,Factors,TABLE,Address,nvarchar,NOT NULL,6
+org,Factors,TABLE,RegisterNumber,varchar,NULL,7
+org,Factors,TABLE,PostalCode,varchar,NULL,8
+org,Factors,TABLE,PhoneNumbers,varchar,NULL,9
+org,Factors,TABLE,NationalId,varchar,NULL,10
+org,Order_Customers,TABLE,Id,int,NOT NULL,1
+org,Order_Customers,TABLE,OrderId,int,NOT NULL,2
+org,Order_Customers,TABLE,CustomerId,int,NOT NULL,3
+org,OrderStates,TABLE,Id,int,NOT NULL,1
+org,OrderStates,TABLE,Title,nvarchar,NOT NULL,2
+org,PaymentDetails,TABLE,Id,int,NOT NULL,1
+org,PaymentDetails,TABLE,InsertDateTime,datetime,NOT NULL,2
+org,PaymentDetails,TABLE,OrderKey,varchar,NOT NULL,3
+org,PaymentDetails,TABLE,RefId,bigint,NULL,4
+org,PaymentDetails,TABLE,Authority,varchar,NULL,5
+org,PaymentDetails,TABLE,Amount,int,NULL,6
+org,User_CustomerGroups,TABLE,Id,int,NOT NULL,1
+org,User_CustomerGroups,TABLE,UserId,int,NOT NULL,2
+org,User_CustomerGroups,TABLE,CustomerGroupId,int,NOT NULL,3
+org,User_DiscountCodes,TABLE,Id,int,NOT NULL,1
+org,User_DiscountCodes,TABLE,UserId,int,NOT NULL,2
+org,User_DiscountCodes,TABLE,DiscountCodeId,bigint,NOT NULL,3
+rbac,Menus,TABLE,ID,int,NOT NULL,1
+rbac,Menus,TABLE,Title,nvarchar,NOT NULL,2
+rbac,Menus,TABLE,Area,nvarchar,NULL,3
+rbac,Menus,TABLE,Controller,nvarchar,NOT NULL,4
+rbac,Menus,TABLE,Action,nvarchar,NULL,5
+rbac,Menus,TABLE,ParentID,int,NULL,6
+rbac,Menus,TABLE,Visible,bit,NOT NULL,7
+rbac,Menus,TABLE,Priority,int,NOT NULL,8
+rbac,Menus,TABLE,IconClass,varchar,NULL,9
+rbac,Menus,TABLE,IsAjax,bit,NOT NULL,10
+rbac,Permission_Roles,TABLE,ID,int,NOT NULL,1
+rbac,Permission_Roles,TABLE,RoleID,int,NOT NULL,2
+rbac,Permission_Roles,TABLE,PermissionID,int,NOT NULL,3
+rbac,Permissions,TABLE,ID,int,NOT NULL,1
+rbac,Permissions,TABLE,MenuId,int,NOT NULL,2
+rbac,Permissions,TABLE,Title,nvarchar,NULL,3
+rbac,Permissions,TABLE,Area,varchar,NULL,4
+rbac,Permissions,TABLE,Controller,varchar,NULL,5
+rbac,Permissions,TABLE,Action,varchar,NULL,6
+rbac,Permissions,TABLE,IsActive,bit,NOT NULL,7
+rbac,Role_Menus,TABLE,ID,int,NOT NULL,1
+rbac,Role_Menus,TABLE,RoleID,int,NOT NULL,2
+rbac,Role_Menus,TABLE,MenuID,int,NOT NULL,3
+rbac,Roles,TABLE,ID,int,NOT NULL,1
+rbac,Roles,TABLE,Title,nvarchar,NULL,2
+rbac,Roles,TABLE,ParentID,int,NULL,3
+rbac,Roles,TABLE,IsAdmin,bit,NOT NULL,4
+rbac,User_Roles,TABLE,ID,int,NOT NULL,1
+rbac,User_Roles,TABLE,UserID,int,NOT NULL,2
+rbac,User_Roles,TABLE,RoleID,int,NOT NULL,3
+rbac,Users,TABLE,ID,int,NOT NULL,1
+rbac,Users,TABLE,UserName,nvarchar,NOT NULL,2
+rbac,Users,TABLE,Password,nvarchar,NOT NULL,3
+rbac,Users,TABLE,FirstName,nvarchar,NOT NULL,4
+rbac,Users,TABLE,LastName,nvarchar,NOT NULL,5
+rbac,Users,TABLE,StartDate,datetime,NOT NULL,6
+rbac,Users,TABLE,ExpireDate,datetime,NOT NULL,7
+rbac,Users,TABLE,IsActive,bit,NOT NULL,8
+rbac,Users,TABLE,ProfilePicture,image,NULL,9
+rbac,Users,TABLE,ReportRate,float,NOT NULL,10
+rbac,Users,TABLE,GuestLimitMinute,int,NOT NULL,11
+rbac,Users,TABLE,GuestLimitCountDay,int,NULL,12
+rbac,Users,TABLE,GuestLimitCountMonth,int,NULL,13
+rbac,Users,TABLE,PosTerminalNo,bigint,NULL,14

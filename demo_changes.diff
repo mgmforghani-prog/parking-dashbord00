@@ -1,0 +1,136 @@
+--- a/db.py
++++ b/db.py
+@@ -11,9 +11,16 @@
+ 
+ import numpy as np
+ import pandas as pd
+-import pyodbc
+ import streamlit as st
+ 
++import offline_db
++
++try:
++    import pyodbc
++except ImportError:  # حالت آفلاین (DEMO_MODE): pyodbc لازم نیست
++    import types
++    pyodbc = types.SimpleNamespace(Error=type("Error", (Exception,), {}), drivers=lambda: [], connect=None)
++
+ TOP_DEFAULT = 50000
+ DRIVER_DEFAULT = "ODBC Driver 17 for SQL Server"
+ PRESENT_MAX_DAYS = 7   # فقط برای فهرست پلاک‌های مسدودِ جایگزین (blocked#2/#3)؛ تقسیم حاضر/رسوبی به آن وابسته نیست
+@@ -32,6 +39,13 @@
+     """خطای قابل‌نمایش به کاربر"""
+ 
+ 
++def _demo(name: str, d0=None, d1=None, limit=None) -> pd.DataFrame:
++    try:
++        return offline_db.load(name, d0, d1, limit, COLUMNS.get(name))
++    except offline_db.SnapshotError as e:
++        raise DBError(str(e)) from e
++
++
+ _OVERRIDE: dict | None = None
+ 
+ 
+@@ -77,6 +91,8 @@
+ 
+ @contextmanager
+ def _connect():
++    if offline_db.is_demo():
++        raise DBError("حالت آفلاین (DEMO_MODE) فعال است؛ اتصال به SQL Server مجاز نیست.")
+     cs, driver, login = _conn_str(_cfg())
+     if driver not in pyodbc.drivers():
+         raise DBError(f"درایور «{driver}» پیدا نشد.\n" + DRIVER_HELP)
+@@ -377,6 +393,8 @@
+ def fetch(name: str, d0: datetime | None = None, d1: datetime | None = None, limit: int = TOP_DEFAULT, tol: float = 0) -> pd.DataFrame:
+     if name not in SPEC:
+         raise DBError(f"کوئری «{name}» تعریف نشده است.")
++    if offline_db.is_demo():
++        return _demo(name, d0, d1, limit)
+     d0, d1 = _py(d0), _py(d1)
+     first_empty, last_err, primary_err = None, None, None
+     for i, (sql, kind) in enumerate(SPEC[name]):
+@@ -403,6 +421,8 @@
+ 
+ @st.cache_data(ttl=300, show_spinner=False)
+ def taradod_images(tid: int) -> tuple[bytes | None, bytes | None]:
++    if offline_db.is_demo():
++        return None, None
+     df = run(IMAGES_SQL, (int(tid),))
+     if df.empty:
+         return None, None
+@@ -412,6 +432,8 @@
+ 
+ def diagnose() -> tuple[str, str]:
+     """(سطح، توضیح فارسی). سطح: ok | config | network | auth | database | driver"""
++    if offline_db.is_demo():
++        return "ok", "حالت آفلاین (Snapshot)؛ بدون اتصال به شبکه."
+     try:
+         c = _cfg()
+     except DBError as e:
+@@ -470,6 +492,8 @@
+ 
+ def fetch_fin(name: str, d0: datetime, d1: datetime, tol: float = 0, step_days: int = 7) -> pd.DataFrame:
+     """کوئری‌های تجمیعی مالی را تکه‌تکه اجرا می‌کند؛ تکه‌ی خطادار به‌صورت خودکار نصف می‌شود تا گزارش کامل برگردد"""
++    if offline_db.is_demo():
++        return _demo(name, d0, d1)
+     d0, d1 = _py(d0), _py(d1)
+     parts, c0 = [], d0
+     while c0 < d1:
+--- a/shift_alerts.py
++++ b/shift_alerts.py
+@@ -19,6 +19,7 @@
+ import pandas as pd
+ 
+ import analytics as an
++from offline_db import is_demo
+ 
+ SEV_ORDER = {"فوری": 0, "مهم": 1, "پایش": 2}
+ ROLE_FA = {"shift_manager": "مدیر شیفت", "security": "حراست", "site_manager": "مدیر پارکینگ", "ceo": "مدیرعامل"}
+@@ -159,14 +160,14 @@
+     def __init__(self, provider=None, api_key=None, sender=None, dry_run=True):
+         self.provider = (provider or os.getenv("SMS_PROVIDER", "console")).lower()
+         self.key, self.sender = api_key or os.getenv("SMS_API_KEY"), sender or os.getenv("SMS_SENDER")
+-        self.dry = dry_run or self.provider == "console" or not self.key
++        self.dry = dry_run or self.provider == "console" or not self.key or is_demo()
+ 
+     def send(self, phone, text):
+         ph = norm_phone(phone)
+         if not ph:
+             return dict(phone=str(phone), ok=False, info="شماره نامعتبر")
+-        if self.dry:
+-            return dict(phone=ph, ok=True, info="DRY-RUN (ارسال نشد)", segments=sms_segments(text))
++        if self.dry or is_demo():
++            return dict(phone=ph, ok=True, info="DEMO (آفلاین؛ ارسال نشد)" if is_demo() else "DRY-RUN (ارسال نشد)", segments=sms_segments(text))
+         try:
+             if self.provider == "kavenegar":
+                 req = urllib.request.Request(f"https://api.kavenegar.com/v1/{self.key}/sms/send.json",
+--- a/app.py
++++ b/app.py
+@@ -481,6 +481,10 @@
+ with st.sidebar:
+     if (HERE / "logo.jpg").exists():
+         st.image(str(HERE / "logo.jpg"), use_container_width=True)
++    if db.offline_db.is_demo():
++        st.markdown('<div style="background:#FFE08A;color:#2C4144!important;border-radius:999px;padding:4px 12px;font-size:.78rem;'
++                    'text-align:center;margin:4px 0 2px;font-weight:800">نسخه ارائه مدیریتی — داده‌های واقعی آفلاین (Snapshot)</div>', unsafe_allow_html=True)
++        st.caption("زمان استخراج: " + fa(str(db.offline_db.meta().get("extracted_at", "-")).replace("T", " ")))
+     if st.session_state.get("dash"):
+         st.button("🏠 بازگشت به صفحه اصلی", key="side_home", on_click=go_to, args=(None,), use_container_width=True)
+     st.markdown("#### بازه زمانی")
+@@ -1639,6 +1643,8 @@
+             if st.button("ارسال پیامک‌ها", type="primary", disabled=al.empty, use_container_width=True):
+                 gw = SA.SMSGateway(sec.get("provider"), sec.get("api_key"), sec.get("sender"), dry_run=not real)
+                 res = SA.dispatch(al, gw, rec, SA.AlertStore() if real else None, minsev)
++                if db.offline_db.is_demo():
++                    st.toast("حالت آفلاین: پیامک واقعی ارسال نشد (شبیه‌سازی)", icon="📵")
+                 st.dataframe(pd.DataFrame(res), hide_index=True, use_container_width=True, height=120)
+                 st.success(f"{sum(r2['ok'] for r2 in res)} از {len(res)} ارسال موفق" + (" (حالت آزمایشی؛ پیامکی ارسال نشد)" if gw.dry else ""))
+         with r_.container(border=True):
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -3,3 +3,4 @@
+ plotly>=5.20
+ # درایور SQL Server بدون ODBC. روی Streamlit Cloud در Advanced settings پایتون ۳.۱۲ یا ۳.۱۳ را انتخاب کنید (چرخ‌های pymssql برای ۳.۱۴ را تأیید نکرده‌ام)
+ pymssql>=2.3.2
++pyarrow>=15
