@@ -6,7 +6,24 @@ from pathlib import Path
 
 import pandas as pd
 
-DIR = Path(os.getenv("DEMO_DIR", str(Path(__file__).parent / "demo_data")))
+def _find_dir() -> Path:
+    env = os.getenv("DEMO_DIR")
+    if env:
+        return Path(env)
+    here = Path(__file__).resolve().parent
+    cands = [here / "demo_data", Path.cwd() / "demo_data"]
+    for base in (here, Path.cwd()):  # سازگار با تفاوت حروف بزرگ/کوچک روی لینوکس (Demo_Data و ...)
+        try:
+            cands += [p for p in base.iterdir() if p.is_dir() and p.name.lower() == "demo_data"]
+        except OSError:
+            pass
+    for p in cands:
+        if (p / "metadata.json").exists():
+            return p
+    return here / "demo_data"
+
+
+DIR = _find_dir()
 FILES = {"view": "view_pbi", "financial": "financial_reports", "pos_tx": "pos_transactions"}
 REQUIRED = {"taradods", "view", "inside", "fin_tx"}
 # بازه‌ی زمانی هر کوئری (هم‌ارز WHERE در SPEC): یک ستون = بازه‌ی ساده؛ دو ستون = ورود «یا» خروج در بازه
@@ -29,13 +46,24 @@ class SnapshotError(RuntimeError):
     """Snapshot ناقص یا پیدا نشد"""
 
 
+def _live_configured() -> bool:
+    """آیا تنظیمات اتصال زنده (secrets) وجود دارد؟ import تنبل تا ماژول مستقل از streamlit بماند"""
+    try:
+        import streamlit as st
+        return "mssql" in dict(st.secrets.get("connections", {}))
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def is_demo() -> bool:
     v = os.getenv("DEMO_MODE", "").strip().lower()
     if v in ("0", "false", "no", "off"):
         return False
     if v in ("1", "true", "yes", "on"):
         return True
-    return (DIR / "metadata.json").exists()
+    if (DIR / "metadata.json").exists():
+        return True
+    return not _live_configured()  # نه Snapshot دارد نه secrets ⇒ خطای واضحِ Snapshot به‌جای خطای اتصال
 
 
 def meta() -> dict:
@@ -43,9 +71,8 @@ def meta() -> dict:
         try:
             _META.update(json.loads((DIR / "metadata.json").read_text(encoding="utf-8")))
         except Exception as e:  # noqa: BLE001
-            raise SnapshotError(f"فایل metadata.json در «{DIR}» پیدا نشد؛ ابتدا python export_demo_snapshot.py را در شبکه سازمان اجرا کنید.") from e
+            raise SnapshotError(f"فایل metadata.json در «{DIR}» پیدا نشد. پوشه‌ی demo_data (با metadata.json) باید داخل مخزن گیت‌هاب، کنار app.py، کامیت شده باشد.") from e
     return _META
-
 
 def _is_dt_col(c: str) -> bool:
     return c != "Date_Farsi" and (bool(re.search(r"Date|Time", c)) or c == "LastActivity")

@@ -1,0 +1,36 @@
+{
+  "extracted_at": "2026-10-21T10:14:08",
+  "server_now": "2026-10-21 10:13:53.213000",
+  "window_start": "2026-09-21 00:00:00",
+  "window_end": "2026-10-21 00:00:00",
+  "days": 30,
+  "format": "parquet",
+  "golden_rule": "current-day excluded",
+  "boundary": {
+    "today_entries": 0,
+    "today_exits_censored": 0,
+    "undated": 0
+  },
+  "rows": {
+    "taradods": 4251,
+    "view": 3573,
+    "anpr": 15839,
+    "barrier": 22905,
+    "discount_logs": 0,
+    "guests": 0,
+    "pos_tx": 3374,
+    "pay_requests": 3547,
+    "real_income": 340,
+    "activity": 89,
+    "events": 0,
+    "sessions": 277,
+    "inside": 285,
+    "inside_audit": 8125,
+    "financial": 798,
+    "discount_codes": 4,
+    "blocked": 2,
+    "cards": 843,
+    "fin_tx": 251,
+    "fin_view": 251
+  }
+}
