@@ -1,4 +1,4 @@
-"""آداپتور آفلاین: خواندن Snapshot از demo_data/ — بدون streamlit، بدون pyodbc و بدون هیچ اتصال شبکه"""
+"""آداپتور آفلاین: خواندن Snapshot از demo_data/ یا از ریشه‌ی مخزن — بدون streamlit، بدون pyodbc و بدون هیچ اتصال شبکه"""
 import json
 import os
 import re
@@ -6,12 +6,13 @@ from pathlib import Path
 
 import pandas as pd
 
+
 def _find_dir() -> Path:
-    env = os.getenv("DEMO_DIR")
-    if env:
+    env = os.getenv("DEMO_DIR", "").strip()
+    if env and (Path(env) / "metadata.json").exists():
         return Path(env)
     here = Path(__file__).resolve().parent
-    cands = [here / "demo_data", Path.cwd() / "demo_data", here, Path.cwd()]
+    cands = [here / "demo_data", here, Path.cwd() / "demo_data", Path.cwd()]
     for base in (here, Path.cwd()):
         try:
             cands += [p for p in base.iterdir() if p.is_dir() and p.name.lower() == "demo_data"]
@@ -47,7 +48,6 @@ class SnapshotError(RuntimeError):
 
 
 def _live_configured() -> bool:
-    """آیا تنظیمات اتصال زنده (secrets) وجود دارد؟ import تنبل تا ماژول مستقل از streamlit بماند"""
     try:
         import streamlit as st
         return "mssql" in dict(st.secrets.get("connections", {}))
@@ -63,7 +63,7 @@ def is_demo() -> bool:
         return True
     if (DIR / "metadata.json").exists():
         return True
-    return not _live_configured()  # نه Snapshot دارد نه secrets ⇒ خطای واضحِ Snapshot به‌جای خطای اتصال
+    return not _live_configured()
 
 
 def meta() -> dict:
@@ -71,8 +71,14 @@ def meta() -> dict:
         try:
             _META.update(json.loads((DIR / "metadata.json").read_text(encoding="utf-8")))
         except Exception as e:  # noqa: BLE001
-            raise SnapshotError(f"فایل metadata.json در «{DIR}» پیدا نشد. پوشه‌ی demo_data (با metadata.json) باید داخل مخزن گیت‌هاب، کنار app.py، کامیت شده باشد.") from e
+            here = Path(__file__).resolve().parent
+            try:
+                found = sorted(p.name for p in here.iterdir())[:40]
+            except OSError:
+                found = []
+            raise SnapshotError(f"metadata.json در «{DIR}» پیدا نشد. محتوای پوشه‌ی برنامه: {found}") from e
     return _META
+
 
 def _is_dt_col(c: str) -> bool:
     return c != "Date_Farsi" and (bool(re.search(r"Date|Time", c)) or c == "LastActivity")
